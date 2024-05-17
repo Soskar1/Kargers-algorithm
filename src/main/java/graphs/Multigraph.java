@@ -1,18 +1,20 @@
 package graphs;
 
+import utils.Pair;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 public class Multigraph {
     private final HashMap<String, Node> nodes = new HashMap<>();
-    private int edgeCount = 0;
+    private final HashMap<Pair<String>, ArrayList<Edge>> edgesBetweenAdjacentNodes = new HashMap<>();
+    private final ArrayList<Edge> edges = new ArrayList<>();
 
     public Multigraph() { }
 
     public Multigraph(Multigraph multigraph) {
-        edgeCount = multigraph.getEdgeCount();
-
         for (Map.Entry<String, Node> entry : multigraph.nodes.entrySet()) {
             String key = entry.getKey();
             Node originalNode = entry.getValue();
@@ -34,8 +36,12 @@ public class Multigraph {
         }
     }
 
+    public int size() {
+        return nodes.size();
+    }
+
     public int getEdgeCount() {
-        return edgeCount;
+        return edges.size();
     }
 
     public void addNode(String id) {
@@ -54,7 +60,8 @@ public class Multigraph {
 
             firstNode.connectNode(secondNode);
             secondNode.connectNode(firstNode);
-            ++edgeCount;
+
+            addEdge(firstNode, secondNode);
         }
     }
 
@@ -72,7 +79,10 @@ public class Multigraph {
 
         firstNode.connectNode(secondNode, edgeCount);
         secondNode.connectNode(firstNode, edgeCount);
-        this.edgeCount += edgeCount;
+
+        for (int i = 0; i < edgeCount; ++i) {
+            addEdge(firstNode, secondNode);
+        }
     }
 
     public void contractNodes(String firstNodeID, String secondNodeID) {
@@ -80,9 +90,10 @@ public class Multigraph {
             Node firstNode = nodes.get(firstNodeID);
             Node secondNode = nodes.get(secondNodeID);
 
-            Integer edgeCount = firstNode.disconnectNode(secondNode);
+            firstNode.disconnectNode(secondNode);
             secondNode.disconnectNode(firstNode);
-            this.edgeCount -= edgeCount;
+
+            removeEdgesBetweenAdjacentNodes(firstNodeID, secondNodeID);
 
             nodes.remove(firstNodeID);
             nodes.remove(secondNodeID);
@@ -103,12 +114,46 @@ public class Multigraph {
     private void connectToSuperNode(Node superNode, Node node) {
         Set<Node> adjacentNodes = node.getAdjacentNodes();
 
-        for (Node tmp : adjacentNodes) {
-            Integer edgeCount = tmp.disconnectNode(node);
-            node.disconnectNode(tmp);
+        for (Node adjacentNode : adjacentNodes) {
+            Integer edgeCount = adjacentNode.disconnectNode(node);
+            node.disconnectNode(adjacentNode);
 
-            superNode.connectNode(tmp, edgeCount);
-            tmp.connectNode(superNode, edgeCount);
+            removeEdgesBetweenAdjacentNodes(node, adjacentNode);
+
+            superNode.connectNode(adjacentNode, edgeCount);
+            adjacentNode.connectNode(superNode, edgeCount);
+
+            for (int i = 0; i < edgeCount; ++i) {
+                addEdge(adjacentNode, superNode);
+            }
         }
+    }
+
+    private void addEdge(Node firstNode, Node secondNode) {
+        Edge edge = new Edge(firstNode, secondNode);
+        edges.add(edge);
+        var key = new Pair<>(firstNode.getID(), secondNode.getID());
+
+        if (!edgesBetweenAdjacentNodes.containsKey(key)) {
+            edgesBetweenAdjacentNodes.put(key, new ArrayList<>());
+        }
+
+        ArrayList<Edge> adjacentNodesEdges = edgesBetweenAdjacentNodes.get(key);
+        adjacentNodesEdges.add(edge);
+    }
+
+    private void removeEdgesBetweenAdjacentNodes(String firstNodeID, String secondNodeID) {
+        var key = new Pair<>(firstNodeID, secondNodeID);
+        ArrayList<Edge> adjacentNodeEdges = edgesBetweenAdjacentNodes.get(key);
+        for (Edge edge : adjacentNodeEdges) {
+            edges.remove(edge);
+        }
+
+        adjacentNodeEdges.clear();
+        edgesBetweenAdjacentNodes.remove(key);
+    }
+
+    private void removeEdgesBetweenAdjacentNodes(Node firstNode, Node secondNode) {
+        removeEdgesBetweenAdjacentNodes(firstNode.getID(), secondNode.getID());
     }
 }
