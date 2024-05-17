@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="41e9e01e-d389-44d5-90cf-e0c0a0d9cd20" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/graphs/Multigraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/graphs/Multigraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/graphs/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/graphs/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Karger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Karger.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +69,15 @@
     <servers />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Main.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="((HashMap)((Node)((HashMap.Node)multigraph.nodes.entrySet().toArray()[0]).getValue()).adjacentNodes).entrySet().toArray()[1]" custom="java.util.HashMap.Node,graphs.Node,java.util.HashMap" />
@@ -78,6 +85,10 @@
         <watch expression="((HashMap.Node)multigraph.nodes.entrySet().toArray()[1]).getValue()" custom="java.util.HashMap.Node" />
         <watch expression="((Node)((HashMap.Node)multigraph.nodes.entrySet().toArray()[2]).getValue()).adjacentNodes" custom="java.util.HashMap.Node,graphs.Node" />
         <watch expression="((HashMap.Node)multigraph.nodes.entrySet().toArray()[0]).getKey()" custom="java.util.HashMap.Node" />
+        <watch expression="((HashMap.Node)multigraph2.nodes.entrySet().toArray()[1]).getValue()" custom="java.util.HashMap.Node" />
+        <watch expression="((HashMap.Node)multigraph2.nodes.entrySet().toArray()[1]).getValue()" custom="java.util.HashMap.Node" />
+        <watch expression="multigraph2.nodes.entrySet().toArray()[1]" />
+        <watch expression="((HashMap)((Node)((HashMap.Node)multigraph2.nodes.entrySet().toArray()[3]).getValue()).adjacentNodes).entrySet().toArray()[2]" custom="java.util.HashMap.Node,graphs.Node,java.util.HashMap" />
       </configuration>
     </watches-manager>
   </component>
