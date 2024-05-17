@@ -1,11 +1,35 @@
 package graphs;
 
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 public class Multigraph {
     private final HashMap<String, Node> nodes = new HashMap<>();
+
+    public Multigraph() { }
+
+    public Multigraph(Multigraph multigraph) {
+        for (Map.Entry<String, Node> entry : multigraph.nodes.entrySet()) {
+            String key = entry.getKey();
+            Node originalNode = entry.getValue();
+
+            Node nodeCopy = new Node(key);
+            nodes.put(key, nodeCopy);
+
+            Set<Node> adjacentNodes = originalNode.getAdjacentNodes();
+            for (Node node : adjacentNodes) {
+                if (!nodes.containsKey(node.getID())) {
+                    nodes.put(node.getID(), new Node(node.getID()));
+                }
+
+                Node adjacentNodeCopy = nodes.get(node.getID());
+                Integer edgeCount = node.getEdgeCount(originalNode);
+
+                nodeCopy.connectNode(adjacentNodeCopy, edgeCount);
+            }
+        }
+    }
 
     public void addNode(String id) {
         if (nodes.containsKey(id)) {

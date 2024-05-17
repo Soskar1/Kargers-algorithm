@@ -43,4 +43,12 @@ public class Node {
     public Set<Node> getAdjacentNodes() {
         return new HashSet<>(adjacentNodes.keySet());
     }
+
+    public Integer getEdgeCount(Node node) {
+        if (adjacentNodes.containsKey(node)) {
+            return adjacentNodes.get(node);
+        }
+
+        return 0;
+    }
 }

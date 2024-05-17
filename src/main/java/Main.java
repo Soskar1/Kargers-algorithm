@@ -16,7 +16,8 @@ public class Main {
         multigraph.connectNodes("C", "D");
         multigraph.connectNodes("D", "B");
 
-        multigraph.contractNodes("A", "B");
+        Multigraph multigraph2 = new Multigraph(multigraph);
+        //multigraph.contractNodes("A", "B");
 
         System.out.println("Hello");
     }
