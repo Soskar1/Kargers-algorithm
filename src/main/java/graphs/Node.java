@@ -1,20 +1,22 @@
 package graphs;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
-public class Node<T> {
-    private final T id;
-    private final HashMap<Node<T>, Integer> adjacentNodes = new HashMap<>();
+public class Node {
+    private final String id;
+    private final HashMap<Node, Integer> adjacentNodes = new HashMap<>();
 
-    public Node(T id) {
+    public Node(String id) {
         this.id = id;
     }
 
-    public T getID() {
+    public String getID() {
         return id;
     }
 
-    public void connectNode(Node<T> node) {
+    public void connectNode(Node node) {
         if (adjacentNodes.containsKey(node)) {
             adjacentNodes.replace(node, adjacentNodes.get(node) + 1);
         } else {
@@ -22,7 +24,7 @@ public class Node<T> {
         }
     }
 
-    public void connectNode(Node<T> node, int edgeCount) {
+    public void connectNode(Node node, int edgeCount) {
         if (edgeCount <= 0) {
             return;
         }
@@ -32,5 +34,13 @@ public class Node<T> {
         } else {
             adjacentNodes.put(node, edgeCount);
         }
+    }
+
+    public Integer disconnectNode(Node node) {
+        return adjacentNodes.remove(node);
+    }
+
+    public Set<Node> getAdjacentNodes() {
+        return new HashSet<>(adjacentNodes.keySet());
     }
 }

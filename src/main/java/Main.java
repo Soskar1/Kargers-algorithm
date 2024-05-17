@@ -2,14 +2,22 @@ import graphs.Multigraph;
 
 public class Main {
     public static void main(String[] args) {
-        Multigraph<Integer> multigraph = new Multigraph<>();
+        Multigraph multigraph = new Multigraph();
 
-        multigraph.addNode(1);
-        multigraph.addNode(2);
-        multigraph.addNode(3);
+        multigraph.addNode("A");
+        multigraph.addNode("B");
+        multigraph.addNode("C");
+        multigraph.addNode("D");
 
-        multigraph.connectNodes(1, 2, 4);
-        multigraph.connectNodes(2, 3, 5);
-        multigraph.connectNodes(1, 3);
+        multigraph.connectNodes("A", "B");
+        multigraph.connectNodes("A", "C");
+        multigraph.connectNodes("A", "D", 2);
+
+        multigraph.connectNodes("C", "D");
+        multigraph.connectNodes("D", "B");
+
+        multigraph.contractNodes("A", "B");
+
+        System.out.println("Hello");
     }
 }
