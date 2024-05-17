@@ -16,9 +16,8 @@ public class Main {
         multigraph.connectNodes("C", "D");
         multigraph.connectNodes("D", "B");
 
-        Multigraph multigraph2 = new Multigraph(multigraph);
-        //multigraph.contractNodes("A", "B");
+        multigraph.contractNodes("A", "D");
 
-        System.out.println("Hello");
+        System.out.println(multigraph.getEdgeCount());
     }
 }

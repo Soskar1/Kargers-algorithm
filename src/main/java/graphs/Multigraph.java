@@ -6,10 +6,13 @@ import java.util.Set;
 
 public class Multigraph {
     private final HashMap<String, Node> nodes = new HashMap<>();
+    private int edgeCount = 0;
 
     public Multigraph() { }
 
     public Multigraph(Multigraph multigraph) {
+        edgeCount = multigraph.getEdgeCount();
+
         for (Map.Entry<String, Node> entry : multigraph.nodes.entrySet()) {
             String key = entry.getKey();
             Node originalNode = entry.getValue();
@@ -31,6 +34,10 @@ public class Multigraph {
         }
     }
 
+    public int getEdgeCount() {
+        return edgeCount;
+    }
+
     public void addNode(String id) {
         if (nodes.containsKey(id)) {
             return;
@@ -47,6 +54,7 @@ public class Multigraph {
 
             firstNode.connectNode(secondNode);
             secondNode.connectNode(firstNode);
+            ++edgeCount;
         }
     }
 
@@ -64,6 +72,7 @@ public class Multigraph {
 
         firstNode.connectNode(secondNode, edgeCount);
         secondNode.connectNode(firstNode, edgeCount);
+        this.edgeCount += edgeCount;
     }
 
     public void contractNodes(String firstNodeID, String secondNodeID) {
@@ -71,8 +80,9 @@ public class Multigraph {
             Node firstNode = nodes.get(firstNodeID);
             Node secondNode = nodes.get(secondNodeID);
 
-            firstNode.disconnectNode(secondNode);
+            Integer edgeCount = firstNode.disconnectNode(secondNode);
             secondNode.disconnectNode(firstNode);
+            this.edgeCount -= edgeCount;
 
             nodes.remove(firstNodeID);
             nodes.remove(secondNodeID);
