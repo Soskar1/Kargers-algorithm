@@ -1,6 +1,7 @@
 import graphs.Edge;
 import graphs.Multigraph;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Karger {
@@ -36,7 +37,8 @@ public class Karger {
     }
 
     private Edge pickRandomEdge(Multigraph multigraph) {
-        int randomNumber = random.nextInt(multigraph.getEdgeCount());
-        return multigraph.getEdge(randomNumber);
+        ArrayList<Edge> edges = multigraph.getEdges();
+        int randomNumber = random.nextInt(edges.size());
+        return edges.get(randomNumber);
     }
 }

@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="41e9e01e-d389-44d5-90cf-e0c0a0d9cd20" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Karger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Karger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/graphs/Multigraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/graphs/Multigraph.java" afterDir="false" />
     </list>
@@ -74,23 +74,11 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/graphs/Multigraph.java</url>
-          <line>110</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Main.java</url>
-          <line>24</line>
-          <option name="timeStamp" value="10" />
+          <line>33</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="((HashMap)((Multigraph)this).nodes).entrySet().toArray()[0]" custom="java.util.HashMap,graphs.Multigraph" />
-        <watch expression="((java.util.ArrayList)((Multigraph)this).edges).get(4)" custom="graphs.Multigraph,java.util.ArrayList" />
-        <watch expression="((Multigraph)this).edgesBetweenAdjacentNodes" custom="graphs.Multigraph" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>

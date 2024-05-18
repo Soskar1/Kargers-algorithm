@@ -1,7 +1,4 @@
 import graphs.Multigraph;
-import utils.Pair;
-
-import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,23 +7,29 @@ public class Main {
         multigraph.addNode("B");
         multigraph.addNode("C");
         multigraph.addNode("D");
+        multigraph.addNode("E");
+        multigraph.addNode("F");
+        multigraph.addNode("G");
+        multigraph.addNode("H");
 
-        multigraph.connectNodes("A", "B");
+        multigraph.connectNodes("A", "B", 2);
         multigraph.connectNodes("A", "D");
-        multigraph.connectNodes("A", "C", 2);
-        multigraph.connectNodes("C", "B");
+        multigraph.connectNodes("A", "C");
+        multigraph.connectNodes("B", "D");
+        multigraph.connectNodes("B", "C");
         multigraph.connectNodes("C", "D");
+        multigraph.connectNodes("C", "F");
+        multigraph.connectNodes("D", "E");
+        multigraph.connectNodes("D", "H");
+        multigraph.connectNodes("E", "F");
+        multigraph.connectNodes("E", "G");
+        multigraph.connectNodes("E", "H");
+        multigraph.connectNodes("F", "H");
+        multigraph.connectNodes("F", "G");
+        multigraph.connectNodes("H", "G", 2);
 
-        //multigraph.contractNodes("A", "C");
-
-        //Karger karger = new Karger(10, multigraph);
-        //Multigraph minCut = karger.run();
-
-        Multigraph multigraph2 = new Multigraph(multigraph);
-        multigraph2.contractNodes("A", "C");
-
-        //System.out.println(multigraph2.size());
-        //System.out.println(multigraph2.getEdgeCount());
+        Karger karger = new Karger(10, multigraph);
+        Multigraph minCut = karger.run();
 
         System.out.println("Hello");
     }

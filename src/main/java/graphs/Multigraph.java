@@ -54,12 +54,8 @@ public class Multigraph {
         return edges.size();
     }
 
-    public Edge getEdge(int index) throws IllegalArgumentException {
-        if (index >= edges.size() - 1) {
-            throw new IllegalArgumentException("Bad index");
-        }
-
-        return edges.get(index);
+    public ArrayList<Edge> getEdges() {
+        return edges;
     }
 
     public void addNode(String id) {
