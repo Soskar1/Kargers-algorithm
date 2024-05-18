@@ -19,8 +19,11 @@ public class Multigraph {
             String key = entry.getKey();
             Node originalNode = entry.getValue();
 
-            Node nodeCopy = new Node(key);
-            nodes.put(key, nodeCopy);
+            if (!nodes.containsKey(key)) {
+                nodes.put(key, new Node(key));
+            }
+
+            Node nodeCopy = nodes.get(key);
 
             Set<Node> adjacentNodes = originalNode.getAdjacentNodes();
             for (Node node : adjacentNodes) {
@@ -32,6 +35,13 @@ public class Multigraph {
                 Integer edgeCount = node.getEdgeCount(originalNode);
 
                 nodeCopy.connectNode(adjacentNodeCopy, edgeCount);
+
+                var pair = new Pair<>(nodeCopy.getID(), adjacentNodeCopy.getID());
+                if (!edgesBetweenAdjacentNodes.containsKey(pair)) {
+                    for (int i = 0; i < edgeCount; ++i) {
+                        addEdge(nodeCopy, adjacentNodeCopy);
+                    }
+                }
             }
         }
     }

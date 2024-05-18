@@ -17,8 +17,16 @@ public class Main {
         multigraph.connectNodes("C", "B");
         multigraph.connectNodes("C", "D");
 
-        Karger karger = new Karger(10, multigraph);
-        Multigraph minCut = karger.run();
+        //multigraph.contractNodes("A", "C");
+
+        //Karger karger = new Karger(10, multigraph);
+        //Multigraph minCut = karger.run();
+
+        Multigraph multigraph2 = new Multigraph(multigraph);
+        multigraph2.contractNodes("A", "C");
+
+        //System.out.println(multigraph2.size());
+        //System.out.println(multigraph2.getEdgeCount());
 
         System.out.println("Hello");
     }
