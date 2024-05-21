@@ -1,4 +1,7 @@
 import graphs.Multigraph;
+import utils.Pair;
+
+import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) {
@@ -31,6 +34,10 @@ public class Main {
         Karger karger = new Karger(10, multigraph);
         Multigraph minCut = karger.run();
 
-        System.out.println("Hello");
+        HashMap<Pair<String>, Integer> edges = minCut.getEdgeCountBetweenNodes();
+
+        for (var entry : edges.entrySet()) {
+            System.out.println(entry.getKey() + ", " + entry.getValue());
+        }
     }
 }

@@ -125,6 +125,16 @@ public class Multigraph {
         }
     }
 
+    public HashMap<Pair<String>, Integer> getEdgeCountBetweenNodes() {
+        HashMap<Pair<String>, Integer> edgeCount = new HashMap<>();
+
+        for (var entry : edgesBetweenAdjacentNodes.entrySet()) {
+            edgeCount.put(entry.getKey(), entry.getValue().size());
+        }
+
+        return edgeCount;
+    }
+
     private void connectToSuperNode(Node superNode, Node node) {
         Set<Node> adjacentNodes = node.getAdjacentNodes();
 

@@ -36,4 +36,9 @@ public class Pair<T extends Comparable<T>> {
     public int hashCode() {
         return Objects.hash(first, second);
     }
+
+    @Override
+    public String toString() {
+        return "(" + first.toString() + ", " + second.toString() + ")";
+    }
 }
